@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import UserCard from "./UserCard";
 
 const Content = ({ setToggle }) => {
   return (
@@ -7,6 +8,7 @@ const Content = ({ setToggle }) => {
       <div className="mt-4">
         <SearchBar setToggle={setToggle} />
       </div>
+      <UserCard />
     </div>
   );
 };
