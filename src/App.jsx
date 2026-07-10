@@ -1,12 +1,19 @@
-import React from 'react'
-import Form from './components/Form.jsx'
-
+import React from "react";
+import Nav from "./components/Nav";
+import Content from "./components/Content";
 const App = () => {
   return (
-    <div >
-      <Form />
-    </div>
-  )
-}
+    <div>
+      <Nav />
+      <div className="m-3 p-4">
+        <Content />
+      </div>
 
-export default App
+      {/* <Form />
+      <UserCard />
+      <Button /> */}
+    </div>
+  );
+};
+
+export default App;
