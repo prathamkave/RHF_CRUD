@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Form = ({ setToggle, addUsers, users }) => {
+const Form = ({ setToggle, setUsers, users, updatedData }) => {
   const {
     register,
     handleSubmit,
@@ -9,23 +9,27 @@ const Form = ({ setToggle, addUsers, users }) => {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    defaultValues: {
-      imageUrl: "",
-      name: "",
-      role: "",
-      email: "",
-      phone: "",
-    },
+    defaultValues: updatedData ,
   });
 
-  const onSubmit = (data) => {
+  let formSubmit = (data) => {
+    if (updatedData) {
+      setUsers((prev) => {
+        return prev.map((val) => {
+          return val.id === updatedData.id ? { ...data } : val;
+        });
+      });
+
+      
+    } else {
       let arr = [...users, { ...data, id: Date.now() }];
-    
-      addUsers(arr);
+      console.log(arr);
+      setUsers(arr);
       localStorage.setItem("users", JSON.stringify(arr));
-   
+    }
+
     reset();
-   
+    setToggle((prev) => !prev);
   };
 
   return (
@@ -34,27 +38,22 @@ const Form = ({ setToggle, addUsers, users }) => {
         <button
           type="button"
           onClick={() => setToggle(false)}
-          className="absolute top-4 right-4 text-white text-xl"
+          className="absolute top-4 right-4 text-white text-xl cursor-pointer hover:text-[#F2D04E] transition-all duration-300"
         >
           ✕
         </button>
         <h2 className="text-2xl font-bold mb-5 text-center text-[#E4DFD8] tracking-tight">
-          Profile Details
+          {updatedData ? "Edit Details" : "Create Profile"}
         </h2>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+        <form onSubmit={handleSubmit(formSubmit)} className="space-y-3">
           <div>
             <label className="block text-xs font-bold text-[#E4DFD8] mb-1 uppercase tracking-wider">
               Image URL *
             </label>
             <input
-              type="url"
               {...register("imageUrl", {
                 required: "Image URL is required",
-                pattern: {
-                  value: /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg))$/i,
-                  message: "Please enter a valid image URL",
-                },
               })}
               className={`w-full px-3 py-2 bg-[#24221B] border rounded-lg text-sm text-[#E4DFD8] placeholder-[#E4DFD8]/30 focus:outline-none focus:ring-2 transition-all duration-300 ${
                 errors.imageUrl
@@ -178,7 +177,7 @@ const Form = ({ setToggle, addUsers, users }) => {
             type="submit"
             className="w-full py-2.5 mt-4 text-[#24221B] text-base font-bold tracking-wide rounded-lg bg-[#F2D04E] hover:bg-[#E5C138] focus:outline-none focus:ring-2 focus:ring-[#F2D04E]/40 transition-all cursor-pointer duration-300 active:scale-[0.98]"
           >
-            Save Profile
+            {updatedData ? "Update Profile" : "Create Profile"}
           </button>
         </form>
       </div>
