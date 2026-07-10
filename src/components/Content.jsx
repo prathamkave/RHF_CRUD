@@ -1,11 +1,11 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 
-const Content = () => {
+const Content = ({ setToggle }) => {
   return (
-    <div className="px-10 h-[calc(100vh-150px)] border border-amber-200 bg-amber-500">
+    <div className="px-10 h-[calc(100vh-150px)] bg-[#24221B]">
       <div className="mt-4">
-        <SearchBar />
+        <SearchBar setToggle={setToggle} />
       </div>
     </div>
   );
