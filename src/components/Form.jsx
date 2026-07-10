@@ -1,15 +1,31 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Form = ({ setToggle }) => {
+const Form = ({ setToggle, addUsers, users }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      imageUrl: "",
+      name: "",
+      role: "",
+      email: "",
+      phone: "",
+    },
+  });
 
   const onSubmit = (data) => {
-    console.log("Form Submitted:", data);
+      let arr = [...users, { ...data, id: Date.now() }];
+    
+      addUsers(arr);
+      localStorage.setItem("users", JSON.stringify(arr));
+   
+    reset();
+   
   };
 
   return (
