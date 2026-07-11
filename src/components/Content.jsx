@@ -27,7 +27,7 @@ const Content = () => {
   };
 
   return (
-    <div className="px-36 h-[calc(100vh-150px)] bg-[#24221B]">
+    <div className="bg-[#24221B] h-[calc(100vh-80px)] px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 py-6 flex flex-col overflow-hidden">
       {toggle && (
         <Form
           setToggle={setToggle}
@@ -37,7 +37,7 @@ const Content = () => {
         />
       )}
 
-      <div className="mt-4">
+      <div className="mt-4 shrink-0">
         <SearchBar
           setToggle={setToggle}
           setUpdatedData={setUpdatedData}
@@ -46,12 +46,14 @@ const Content = () => {
         />
       </div>
 
-      <UserCard
-        setUpdatedData={setUpdatedData}
-        users={filteredUsers}
-        deleteUser={deleteUser}
-        setToggle={setToggle}
-      />
+      <div className="flex-1 overflow-y-auto mt-6 custom-scroll">
+        <UserCard
+          setUpdatedData={setUpdatedData}
+          users={filteredUsers}
+          deleteUser={deleteUser}
+          setToggle={setToggle}
+        />
+      </div>
     </div>
   );
 };
