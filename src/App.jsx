@@ -4,11 +4,10 @@ import Form from "./components/Form";
 import UserCard from "./components/UserCard";
 
 const App = () => {
-  
   return (
     <div className="bg-[#24221B] min-h-screen">
       <Nav />
-      <div className="m-3 p-4 ">
+      <div>
         <Content />
       </div>
     </div>

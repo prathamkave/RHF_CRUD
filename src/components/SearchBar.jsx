@@ -22,7 +22,7 @@ const SearchBar = ({ setToggle, setUpdatedData, search, setSearch }) => {
 				}}
 				className='px-4 py-2 text-[#24221B] text-base font-bold tracking-wide rounded-lg bg-[#efcf4d] cursor-pointer'
 			>
-				Create User
+				Add User
 			</button>
 		</div>
 	);
