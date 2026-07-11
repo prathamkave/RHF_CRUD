@@ -4,3 +4,25 @@
 @theme {
   --font-poppins: "Poppins", sans-serif;
 }
+.custom-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #1b1a16;
+  border-radius: 20px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f2d04e, #e8b923);
+  border-radius: 20px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ffd84c;
+}
+
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #f2d04e #1b1a16;
+}
